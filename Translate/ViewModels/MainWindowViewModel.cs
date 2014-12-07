@@ -21,6 +21,12 @@ namespace Translate.ViewModels
             Words.Add(new WordModel(){StringOriginal="original1", StringTranslated="перевод", TranslateType="тест" });
             Words.Add(new WordModel(){StringOriginal="original2", StringTranslated="перевод", TranslateType="тест" });
             Words.Add(new WordModel(){StringOriginal="original3", StringTranslated="перевод", TranslateType="тест" });
+
+            WordColocation wc = new WordColocation(TranslateDirection.Ru_En);
+            wc.AddWord("это");
+            wc.AddWord("проверка");
+            wc.AddWord("состава");
+            wc.AddWord("предложения");
         }
         #endregion 
 

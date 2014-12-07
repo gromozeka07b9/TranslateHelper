@@ -94,6 +94,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BL\ITranslateManager.cs" />
+    <Compile Include="BL\TranslateManager.cs" />
+    <Compile Include="Models\IWordColocation.cs" />
+    <Compile Include="Models\TranslateDirection.cs" />
+    <Compile Include="Models\OneWord.cs" />
+    <Compile Include="Models\WordColocation.cs" />
     <Compile Include="Models\WordModel.cs" />
     <Compile Include="ViewModels\Commands.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
