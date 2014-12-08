@@ -8,8 +8,8 @@ namespace Translate.BL
 {
     interface ITranslateManager
     {
-        public List<WordColocation> TranslateSeparatedWords();
+        List<WordColocation> TranslateSeparatedWords();
 
-        public WordColocation TranslateWordColocation();
+        WordColocation TranslateColocatedWords();
     }
 }

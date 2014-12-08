@@ -3,7 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Translate.Models;
 using System.Collections.Generic;
 using System.Text;
-using TranslateTests.BL;
+using TranslateTests;
+using Translate.BL;
 
 namespace TranslateTests
 {
@@ -14,7 +15,7 @@ namespace TranslateTests
         [TestMethod]
         public void CreateWordColocation_AddWordsPass()
         {
-            WordColocation wc = getDefaultWordColocation(TranslateDirection.Ru_En);
+            WordColocation wc = getDefaultWordColocation(new TranslateDirection(TranslateDirectionEnum.Ru_En));
             var words = wc.GetWords();
             List<string> wordForCheck = getDefaultWordsKit1();
             int index = 0;
@@ -23,15 +24,15 @@ namespace TranslateTests
                 Assert.IsTrue(words[index].WordOriginal == item);
                 index++;
             }
-            Assert.IsTrue(wc.GetTranslateDirection() == TranslateDirection.Ru_En);
+            Assert.IsTrue(wc.GetTranslateDirection().Direction == TranslateDirectionEnum.Ru_En);
         }
 
         [TestMethod]
         public void TranslateManager_LoadWordsPass()
         {           
-            var manager = new TranslateManager(getDefaultTextForTranslateKit1(), TranslateDirection.Ru_En);        
+            var manager = new TranslateManager(getDefaultTextForTranslateKit1(), new TranslateDirection(TranslateDirectionEnum.Ru_En));
             List<WordColocation> listWordsColocation = manager.TranslateSeparatedWords();
-            WordColocation wordsColocation = manager.TranslateWordColocation();
+            //WordColocation wordsColocation = manager.TranslateColocatedWords();
 
             /*int index = 0;
             foreach (var item in wordForCheckKit1)

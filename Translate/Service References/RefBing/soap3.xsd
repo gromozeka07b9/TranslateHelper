@@ -92,6 +92,7 @@
         <xs:element minOccurs="0" name="appId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="locale" nillable="true" type="xs:string" />
         <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="languageCodes" nillable="true" type="q4:ArrayOfstring" />
+        <xs:element minOccurs="0" name="useSpokenVariant" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

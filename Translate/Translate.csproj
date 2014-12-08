@@ -96,6 +96,8 @@
     </ApplicationDefinition>
     <Compile Include="BL\ITranslateManager.cs" />
     <Compile Include="BL\TranslateManager.cs" />
+    <Compile Include="DAL.Services\Bing.cs" />
+    <Compile Include="DAL.Services\AbstractService.cs" />
     <Compile Include="Models\IWordColocation.cs" />
     <Compile Include="Models\TranslateDirection.cs" />
     <Compile Include="Models\OneWord.cs" />
