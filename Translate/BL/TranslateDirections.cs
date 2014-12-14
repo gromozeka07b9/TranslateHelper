@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Translate.DAL.Services;
+using Translate.Models;
 
-namespace Translate.Models
+namespace Translate.BL
 {
-    public enum TranslateDirectionEnum
-    {
-        Ru_En = 0, En_Ru, Empty = 999
-    }
-
-    public class TranslateDirection
+    public class TranslateDirections
     {
         TranslateDirectionEnum direction = TranslateDirectionEnum.Empty;
         string from = string.Empty;
@@ -40,7 +37,7 @@ namespace Translate.Models
             }
         }
 
-        public TranslateDirection(TranslateDirectionEnum translateDirection)
+        public TranslateDirections(TranslateDirectionEnum translateDirection)
         {
             direction = translateDirection;
             switch(direction)

@@ -4,27 +4,26 @@ using System.Linq;
 using System.Text;
 using Translate.Models;
 
-namespace Translate
+namespace Translate.DAL.Services
 {
-    public class Bing : AbstractTranslateService
+    public class Bing : ITranslateService
     {
-        public Bing(TranslateDirection translateDirection) 
+        public Bing() 
         {
-            direction = translateDirection;
         }
 
-        public override OperationResult<List<string>> Translate(string sourceString)
+        public OperationResult<string> TranslateString(string sourceString, string directionFrom, string directionTo)
         {
-            OperationResult<List<string>> result = new OperationResult<List<string>>(new List<string>(), string.Empty);
+            OperationResult<string> result = new OperationResult<string>(string.Empty, string.Empty);
             RefBing.LanguageServiceClient client = new RefBing.LanguageServiceClient();
             try
             {
-                if (null != direction)
+                if ((!string.IsNullOrEmpty(directionFrom)) && (!string.IsNullOrEmpty(directionTo)))
                 {
-                    string TranslatedString = client.Translate("0256C6925C368EC83FAD276B2ED2706F709CC4D1", sourceString, direction.From, direction.To, "", "");
+                    string TranslatedString = client.Translate("0256C6925C368EC83FAD276B2ED2706F709CC4D1", sourceString, directionFrom, directionTo, "", "");
                     if (string.Empty != TranslatedString)
                     {
-                        result.Value.Add(TranslatedString);
+                        result.Value = TranslatedString;
                     }
                 }
                 else

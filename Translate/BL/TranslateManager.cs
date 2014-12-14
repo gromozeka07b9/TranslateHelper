@@ -3,50 +3,64 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Translate.BL;
+using Translate.DAL.Services;
 using Translate.Models;
 
 namespace Translate.BL
 {
     public class TranslateManager : ITranslateManager
     {
-        string textOriginal;
-        TranslateDirection translateDirection;
+        TranslateDirections translateDirection;
+        TranslateService translateService;
 
-        public TranslateManager(string textForTraslate, TranslateDirection direction)
+        public TranslateManager(TranslateDirections direction, TranslateService service)
         {
-            textOriginal = textForTraslate;
             translateDirection = direction;
+            translateService = service;
         }
 
-        public List<WordColocation> TranslateSeparatedWords()
+        public WordColocation Translate(string textOriginal)
         {
-            var resultList = new List<WordColocation>();
+            var translatedWords = new WordColocation();
             string[] parsedTextArr = ParseInputString(textOriginal, translateDirection);
-            foreach(var str in parsedTextArr)
+            foreach(var item in parsedTextArr)
             {
-                var newWord = new WordColocation(translateDirection);
-                newWord.AddWord(str);
-                Bing translater = new Bing(translateDirection);
-                var translateResult = translater.Translate(str);
-                if(string.IsNullOrEmpty(translateResult.Error))
-                {
-                    //newWord.
-                }
-                resultList.Add(newWord);
+                translatedWords.AddOriginalWord(item);
             }
-            return resultList;
+            
+            TranslateServiceManager servManager = new TranslateServiceManager();
+            ITranslateService srvTranslate = null;
+            switch(translateService.Service)
+            {
+                case TranslateServiceEnum.Bing:
+                    {
+                        srvTranslate = new Bing();
+                    };break;
+                case TranslateServiceEnum.Yandex:
+                    {
+                        //srvTranslate = new Yandex();
+                    }; break;
+                default:
+                    {
+                        srvTranslate = new Bing();
+                    }; break;
+            }
+            Bing srvBing = new Bing();
+            var callServiceResult = servManager.Translate(srvBing, textOriginal, translateDirection.From, translateDirection.To);
+            if (string.IsNullOrEmpty(callServiceResult.Error))
+            {
+                TranslatedStrings ts = new TranslatedStrings(translateDirection);
+                ts.ListWords.Add(callServiceResult.Value);
+                translatedWords.SetTranslateResult(ts);
+            }
+            return translatedWords;
         }
 
-        private string[] ParseInputString(string textOriginal, TranslateDirection translateDirection)
+        private string[] ParseInputString(string textOriginal, TranslateDirections translateDirection)
         {
             //разделители - пробелы и переводы строк, пока без переносов
             char[] delimiters = {' ','\n'};
             return textOriginal.Split(delimiters);
-        }
-
-        public WordColocation TranslateColocatedWords()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -39,7 +39,7 @@
     <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -95,12 +95,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BL\ITranslateManager.cs" />
+    <Compile Include="BL\TranslateServices.cs" />
     <Compile Include="BL\TranslateManager.cs" />
     <Compile Include="DAL.Services\Bing.cs" />
-    <Compile Include="DAL.Services\AbstractService.cs" />
+    <Compile Include="DAL.Services\TranslateServiceManager.cs" />
+    <Compile Include="DAL.Services\ITranslateService.cs" />
+    <Compile Include="DAL.Services\TranslateDirectionEnum.cs" />
+    <Compile Include="Models\TranslatedStrings.cs" />
     <Compile Include="Models\IWordColocation.cs" />
-    <Compile Include="Models\TranslateDirection.cs" />
-    <Compile Include="Models\OneWord.cs" />
+    <Compile Include="BL\TranslateDirections.cs" />
+    <Compile Include="DAL.Services\TranslateServiceEnum.cs" />
     <Compile Include="Models\WordColocation.cs" />
     <Compile Include="Models\WordModel.cs" />
     <Compile Include="ViewModels\Commands.cs" />

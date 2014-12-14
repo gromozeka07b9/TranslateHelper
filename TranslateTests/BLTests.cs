@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using TranslateTests;
 using Translate.BL;
+using Translate.DAL.Services;
 
 namespace TranslateTests
 {
@@ -13,25 +14,27 @@ namespace TranslateTests
     {
 
         [TestMethod]
-        public void CreateWordColocation_AddWordsPass()
+        public void CreateWordColocation_AddOneWordsPass()
         {
-            WordColocation wc = getDefaultWordColocation(new TranslateDirection(TranslateDirectionEnum.Ru_En));
-            var words = wc.GetWords();
+            WordColocation wc = getDefaultWordColocation();
+            var words = wc.OriginalWords;
             List<string> wordForCheck = getDefaultWordsKit1();
             int index = 0;
             foreach (var item in wordForCheck)
             {
-                Assert.IsTrue(words[index].WordOriginal == item);
+                Assert.IsTrue(words[index] == item);
                 index++;
             }
-            Assert.IsTrue(wc.GetTranslateDirection().Direction == TranslateDirectionEnum.Ru_En);
+            Assert.IsTrue(wordForCheck.Count == words.Count);
         }
 
         [TestMethod]
-        public void TranslateManager_LoadWordsPass()
+        public void TranslateManager_AddManyWordsPass()
         {           
-            var manager = new TranslateManager(getDefaultTextForTranslateKit1(), new TranslateDirection(TranslateDirectionEnum.Ru_En));
-            List<WordColocation> listWordsColocation = manager.TranslateSeparatedWords();
+            var manager = new TranslateManager(new TranslateDirections(TranslateDirectionEnum.Ru_En), new TranslateService(TranslateServiceEnum.Bing));
+            var result = manager.Translate(getDefaultTextForTranslateKit1());
+
+            //List<WordColocation> listWordsColocation = manager.TranslateSeparatedWords();
             //WordColocation wordsColocation = manager.TranslateColocatedWords();
 
             /*int index = 0;
@@ -43,13 +46,13 @@ namespace TranslateTests
             Assert.IsTrue(wc.GetTranslateDirection() == TranslateDirection.Ru_En);*/
         }
 
-        private WordColocation getDefaultWordColocation(TranslateDirection direction)
+        private WordColocation getDefaultWordColocation()
         {
             List<string> wordForCheck = getDefaultWordsKit1();
-            WordColocation wc = new WordColocation(direction);
+            WordColocation wc = new WordColocation();
             foreach (var item in wordForCheck)
             {
-                wc.AddWord(item);
+                wc.AddOriginalWord(item);
             }
             return wc;
         }

@@ -2,25 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Data.SqlServerCe;
-using Translate.TranslateDataSetTableAdapters;
 using Translate.Models;
 
-namespace Translate
+namespace Translate.DAL.Services
 {
-    public abstract class AbstractTranslateService
+    public class TranslateServiceManager
     {
         //TranslateService _Service = TranslateService.NotSet;
         //TranslateFromTo _FromTo = TranslateFromTo.NotSet;
         //SqlCeConnection connSql = new SqlCeConnection(@"Data Source=C:\projects\Translate\Translate\Translate.sdf");
-        protected TranslateDirection direction;
+        //protected TranslateDirectionEnum direction;
 
-        public AbstractTranslateService()
+        public TranslateServiceManager()
         {
         }
+            
 
-        public abstract OperationResult<List<string>> Translate(string sourceString);
-
+        public OperationResult<string> Translate(ITranslateService translateService, string sourceString, string directionFrom, string directionTo)
+        {
+            
+            OperationResult<string> result = translateService.TranslateString(sourceString, directionFrom, directionTo);
+            
+            return result;
+        }
         /*public OperationResult<List<string>> Test()
         {
             string TestString = "test";
