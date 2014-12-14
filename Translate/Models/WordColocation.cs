@@ -8,14 +8,14 @@ namespace Translate.Models
 {
     public class WordColocation : IWordColocation
     {
-        List<string> listOriginalWords = new List<string>();
-        TranslatedStrings translatedStrings;
+        readonly List<string> _listOriginalWords = new List<string>();
+        TranslatedStrings _translatedStrings;
 
         public List<string> OriginalWords
         {
             get
             {
-                return listOriginalWords;
+                return _listOriginalWords;
             }
         }
 
@@ -23,7 +23,7 @@ namespace Translate.Models
         {
             get
             {
-                return translatedStrings;
+                return _translatedStrings;
             }
         }
 
@@ -33,12 +33,12 @@ namespace Translate.Models
 
         public void AddOriginalWord(string oneWord)
         {
-            listOriginalWords.Add(oneWord);
+            _listOriginalWords.Add(oneWord);
         }
 
         public void SetTranslateResult(TranslatedStrings translateResult)
         {
-            translatedStrings = translateResult;
+            _translatedStrings = translateResult;
         }
 
     }

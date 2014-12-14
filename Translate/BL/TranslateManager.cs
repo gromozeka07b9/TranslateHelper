@@ -10,19 +10,19 @@ namespace Translate.BL
 {
     public class TranslateManager : ITranslateManager
     {
-        TranslateDirections translateDirection;
-        TranslateService translateService;
+        readonly TranslateDirections _translateDirection;
+        readonly TranslateService _translateService;
 
         public TranslateManager(TranslateDirections direction, TranslateService service)
         {
-            translateDirection = direction;
-            translateService = service;
+            _translateDirection = direction;
+            _translateService = service;
         }
 
         public WordColocation Translate(string textOriginal)
         {
             var translatedWords = new WordColocation();
-            string[] parsedTextArr = ParseInputString(textOriginal, translateDirection);
+            string[] parsedTextArr = ParseInputString(textOriginal, _translateDirection);
             foreach(var item in parsedTextArr)
             {
                 translatedWords.AddOriginalWord(item);
@@ -30,7 +30,7 @@ namespace Translate.BL
             
             TranslateServiceManager servManager = new TranslateServiceManager();
             ITranslateService srvTranslate = null;
-            switch(translateService.Service)
+            switch(_translateService.Service)
             {
                 case TranslateServiceEnum.Bing:
                     {
@@ -38,18 +38,17 @@ namespace Translate.BL
                     };break;
                 case TranslateServiceEnum.Yandex:
                     {
-                        //srvTranslate = new Yandex();
+                        srvTranslate = new Yandex();
                     }; break;
                 default:
                     {
                         srvTranslate = new Bing();
                     }; break;
             }
-            Bing srvBing = new Bing();
-            var callServiceResult = servManager.Translate(srvBing, textOriginal, translateDirection.From, translateDirection.To);
+            var callServiceResult = servManager.Translate(srvTranslate, textOriginal, _translateDirection.From, _translateDirection.To);
             if (string.IsNullOrEmpty(callServiceResult.Error))
             {
-                TranslatedStrings ts = new TranslatedStrings(translateDirection);
+                var ts = new TranslatedStrings(_translateDirection);
                 ts.ListWords.Add(callServiceResult.Value);
                 translatedWords.SetTranslateResult(ts);
             }

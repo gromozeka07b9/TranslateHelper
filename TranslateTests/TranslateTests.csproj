@@ -54,9 +54,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="InitTests.cs" />
     <Compile Include="OperationResultTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BLTests.cs" />
+    <Compile Include="IntegrationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Translate\Translate.csproj">

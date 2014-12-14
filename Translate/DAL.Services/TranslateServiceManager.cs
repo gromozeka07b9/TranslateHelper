@@ -13,10 +13,6 @@ namespace Translate.DAL.Services
         //SqlCeConnection connSql = new SqlCeConnection(@"Data Source=C:\projects\Translate\Translate\Translate.sdf");
         //protected TranslateDirectionEnum direction;
 
-        public TranslateServiceManager()
-        {
-        }
-            
 
         public OperationResult<string> Translate(ITranslateService translateService, string sourceString, string directionFrom, string directionTo)
         {

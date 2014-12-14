@@ -97,6 +97,7 @@
     <Compile Include="BL\ITranslateManager.cs" />
     <Compile Include="BL\TranslateServices.cs" />
     <Compile Include="BL\TranslateManager.cs" />
+    <Compile Include="DAL.Services\Yandex.cs" />
     <Compile Include="DAL.Services\Bing.cs" />
     <Compile Include="DAL.Services\TranslateServiceManager.cs" />
     <Compile Include="DAL.Services\ITranslateService.cs" />
