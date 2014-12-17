@@ -8,19 +8,19 @@ namespace Translate.BL
 {
     public class TranslateService
     {
-        readonly TranslateServiceEnum _service;
+        readonly TranslateServiceEnum service;
 
         public TranslateServiceEnum Service
         {
             get
             {
-                return _service;
+                return service;
             }
         }
 
         public TranslateService(TranslateServiceEnum translateService)
         {
-            _service = translateService;
+            service = translateService;
         }
     }
 }

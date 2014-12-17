@@ -15,8 +15,14 @@ namespace Translate.DAL.Services
         public OperationResult<string> TranslateString(string sourceString, string directionFrom, string directionTo)
         {
             OperationResult<string> result;
-            throw  new Exception("Not realized");
+            throw new NotFiniteNumberException();
             return result;
+        }
+
+
+        public OperationResult<string> TranslateArrayStrings(IEnumerable<string> sourceArrayStrings, string directionFrom, string directionTo)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -21,31 +21,9 @@ namespace Translate.BL
 
         public WordColocation Translate(string textOriginal)
         {
-            var translatedWords = new WordColocation();
-            IEnumerable<string> parsedTextArr = ParseInputString(textOriginal, translateDirection);
-            foreach(var item in parsedTextArr)
-            {
-                translatedWords.AddOriginalWord(item);
-            }
-            
-            var servManager = new TranslateServiceManager();
-            ITranslateService srvTranslate = null;
-            switch(translateService.Service)
-            {
-                case TranslateServiceEnum.Bing:
-                    {
-                        srvTranslate = new Bing();
-                    };break;
-                case TranslateServiceEnum.Yandex:
-                    {
-                        srvTranslate = new Yandex();
-                    }; break;
-                default:
-                    {
-                        srvTranslate = new Bing();
-                    }; break;
-            }
-            var callServiceResult = servManager.Translate(srvTranslate, textOriginal, translateDirection.From, translateDirection.To);
+            var translatedWords = InitArrayTranslatedWords(textOriginal);
+            var srvTranslate = SelectTranslateService();
+            var callServiceResult = srvTranslate.TranslateString(textOriginal, translateDirection.From, translateDirection.To);
             if (string.IsNullOrEmpty(callServiceResult.Error))
             {
                 var ts = new TranslatedStrings(translateDirection);
@@ -55,10 +33,45 @@ namespace Translate.BL
             return translatedWords;
         }
 
+        private ITranslateService SelectTranslateService()
+        {
+            ITranslateService srvTranslate = null;
+            switch (translateService.Service)
+            {
+                case TranslateServiceEnum.Bing:
+                    {
+                        srvTranslate = new Bing();
+                    };
+                    break;
+                case TranslateServiceEnum.Yandex:
+                    {
+                        srvTranslate = new Yandex();
+                    };
+                    break;
+                default:
+                    {
+                        srvTranslate = new Bing();
+                    };
+                    break;
+            }
+            return srvTranslate;
+        }
+
+        private WordColocation InitArrayTranslatedWords(string textOriginal)
+        {
+            var translatedWords = new WordColocation();
+            var parsedTextArr = ParseInputString(textOriginal, translateDirection);
+            foreach (var item in parsedTextArr)
+            {
+                translatedWords.AddOriginalWord(item);
+            }
+            return translatedWords;
+        }
+
         private IEnumerable<string> ParseInputString(string textOriginal, TranslateDirections translateDirection)
         {
             //разделители - пробелы и переводы строк, пока без переносов
-            char[] delimiters = {' ','\n'};
+            char[] delimiters = { ' ', '\n' };
             return textOriginal.Split(delimiters);
         }
     }

@@ -8,7 +8,7 @@ namespace Translate.DAL.Services
 {
     public class Bing : ITranslateService
     {
-        public Bing() 
+        public Bing()
         {
         }
 
@@ -36,6 +36,12 @@ namespace Translate.DAL.Services
                 result.Error = e.Message;
             }
             return result;
+        }
+
+
+        public OperationResult<string> TranslateArrayStrings(IEnumerable<string> sourceArrayStrings, string directionFrom, string directionTo)
+        {
+            throw new NotImplementedException();
         }
     }
 }

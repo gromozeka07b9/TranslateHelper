@@ -95,11 +95,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BL\ITranslateManager.cs" />
-    <Compile Include="BL\TranslateServices.cs" />
+    <Compile Include="BL\TranslateService.cs" />
     <Compile Include="BL\TranslateManager.cs" />
     <Compile Include="DAL.Services\Yandex.cs" />
     <Compile Include="DAL.Services\Bing.cs" />
-    <Compile Include="DAL.Services\TranslateServiceManager.cs" />
     <Compile Include="DAL.Services\ITranslateService.cs" />
     <Compile Include="DAL.Services\TranslateDirectionEnum.cs" />
     <Compile Include="Models\TranslatedStrings.cs" />
@@ -108,6 +107,7 @@
     <Compile Include="DAL.Services\TranslateServiceEnum.cs" />
     <Compile Include="Models\WordColocation.cs" />
     <Compile Include="Models\WordModel.cs" />
+    <Compile Include="OperationResult.cs" />
     <Compile Include="ViewModels\Commands.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
@@ -118,32 +118,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Tools.cs" />
-    <Compile Include="TranslateDataSet.cs">
-      <DependentUpon>TranslateDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="TranslateDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TranslateDataSet.xsd</DependentUpon>
-    </Compile>
     <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Content Include="MainWindowOld.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Content>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Content Include="MainWindowOld.xaml.cs">
-      <DependentUpon>MainWindowOld.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -192,17 +174,6 @@
     <None Include="Service References\RefBing\Translate.RefBing.TranslateArrayResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="TranslateDataSet.xsc">
-      <DependentUpon>TranslateDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="TranslateDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TranslateDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="TranslateDataSet.xss">
-      <DependentUpon>TranslateDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -221,11 +192,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Translate.sdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
