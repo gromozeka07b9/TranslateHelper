@@ -14,7 +14,7 @@ namespace Translate.DAL.Services
 
         public OperationResult<string> TranslateString(string sourceString, string directionFrom, string directionTo)
         {
-            var result = new OperationResult<string>(string.Empty, string.Empty);
+            OperationResult<string> result;
             throw  new Exception("Not realized");
             return result;
         }

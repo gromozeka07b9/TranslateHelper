@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using Translate.Models;
 
-namespace Translate.ViewModels
+/*namespace Translate.ViewModels
 {
     class MainWindowViewModel
     {
@@ -22,11 +22,6 @@ namespace Translate.ViewModels
             Words.Add(new WordModel(){StringOriginal="original2", StringTranslated="перевод", TranslateType="тест" });
             Words.Add(new WordModel(){StringOriginal="original3", StringTranslated="перевод", TranslateType="тест" });
 
-            /*WordColocation wc = new WordColocation(TranslateDirection.Ru_En);
-            wc.AddWord("это");
-            wc.AddWord("проверка");
-            wc.AddWord("состава");
-            wc.AddWord("предложения");*/
         }
         #endregion 
 
@@ -42,4 +37,4 @@ namespace Translate.ViewModels
         #endregion
 
     }
-}
+}*/

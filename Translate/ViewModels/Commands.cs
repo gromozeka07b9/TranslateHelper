@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Translate.ViewModels
 {
-    class Command : ICommand
+    /*class Command : ICommand
     {
         public Action<object> ExecuteDelegate { get; set; }
         public Predicate<object> CanExecuteDelegate { get; set; }
@@ -39,5 +39,5 @@ namespace Translate.ViewModels
                 ExecuteDelegate(parameter);
             }
         }
-    }
+    }*/
 }

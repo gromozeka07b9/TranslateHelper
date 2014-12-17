@@ -119,8 +119,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Tools.cs" />
-    <Compile Include="TranslateBing.cs" />
-    <Compile Include="TranslateClass.cs" />
     <Compile Include="TranslateDataSet.cs">
       <DependentUpon>TranslateDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>

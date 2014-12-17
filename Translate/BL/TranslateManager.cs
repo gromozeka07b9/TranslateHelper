@@ -10,27 +10,27 @@ namespace Translate.BL
 {
     public class TranslateManager : ITranslateManager
     {
-        readonly TranslateDirections _translateDirection;
-        readonly TranslateService _translateService;
+        readonly TranslateDirections translateDirection;
+        readonly TranslateService translateService;
 
         public TranslateManager(TranslateDirections direction, TranslateService service)
         {
-            _translateDirection = direction;
-            _translateService = service;
+            translateDirection = direction;
+            translateService = service;
         }
 
         public WordColocation Translate(string textOriginal)
         {
             var translatedWords = new WordColocation();
-            string[] parsedTextArr = ParseInputString(textOriginal, _translateDirection);
+            IEnumerable<string> parsedTextArr = ParseInputString(textOriginal, translateDirection);
             foreach(var item in parsedTextArr)
             {
                 translatedWords.AddOriginalWord(item);
             }
             
-            TranslateServiceManager servManager = new TranslateServiceManager();
+            var servManager = new TranslateServiceManager();
             ITranslateService srvTranslate = null;
-            switch(_translateService.Service)
+            switch(translateService.Service)
             {
                 case TranslateServiceEnum.Bing:
                     {
@@ -45,17 +45,17 @@ namespace Translate.BL
                         srvTranslate = new Bing();
                     }; break;
             }
-            var callServiceResult = servManager.Translate(srvTranslate, textOriginal, _translateDirection.From, _translateDirection.To);
+            var callServiceResult = servManager.Translate(srvTranslate, textOriginal, translateDirection.From, translateDirection.To);
             if (string.IsNullOrEmpty(callServiceResult.Error))
             {
-                var ts = new TranslatedStrings(_translateDirection);
+                var ts = new TranslatedStrings(translateDirection);
                 ts.ListWords.Add(callServiceResult.Value);
                 translatedWords.SetTranslateResult(ts);
             }
             return translatedWords;
         }
 
-        private string[] ParseInputString(string textOriginal, TranslateDirections translateDirection)
+        private IEnumerable<string> ParseInputString(string textOriginal, TranslateDirections translateDirection)
         {
             //разделители - пробелы и переводы строк, пока без переносов
             char[] delimiters = {' ','\n'};
