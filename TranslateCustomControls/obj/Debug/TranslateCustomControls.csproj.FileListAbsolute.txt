@@ -1,0 +1,11 @@
+C:\git\TranslateHelper\TranslateCustomControls\bin\Debug\TranslateCustomControls.dll
+C:\git\TranslateHelper\TranslateCustomControls\bin\Debug\TranslateCustomControls.pdb
+C:\git\TranslateHelper\TranslateCustomControls\obj\Debug\ActiveLabel.baml
+C:\git\TranslateHelper\TranslateCustomControls\obj\Debug\ActiveLabel.g.cs
+C:\git\TranslateHelper\TranslateCustomControls\obj\Debug\TranslateCustomControls_MarkupCompile.cache
+C:\git\TranslateHelper\TranslateCustomControls\obj\Debug\TranslateCustomControls.g.resources
+C:\git\TranslateHelper\TranslateCustomControls\obj\Debug\TranslateCustomControls.Properties.Resources.resources
+C:\git\TranslateHelper\TranslateCustomControls\obj\Debug\TranslateCustomControls.csproj.GenerateResource.Cache
+C:\git\TranslateHelper\TranslateCustomControls\obj\Debug\TranslateCustomControls.dll
+C:\git\TranslateHelper\TranslateCustomControls\obj\Debug\TranslateCustomControls.pdb
+C:\git\TranslateHelper\TranslateCustomControls\obj\Debug\TranslateCustomControls.csprojResolveAssemblyReference.cache

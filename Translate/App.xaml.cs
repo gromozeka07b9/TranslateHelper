@@ -16,13 +16,13 @@ namespace Translate
     {
         public App()
         {
-            /*
-            ;var mw = new Views.MainWindow()
+           
+            var mw = new Views.MainWindow()
             {
-                DataContext = new MainWindowViewModel()
+                //DataContext = new MainWindowViewModel()
             };
             mw.Show();
-            */
+            
         }
     }
 }

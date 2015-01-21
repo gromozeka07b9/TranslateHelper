@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="TranslateCustomControls.ActiveLabel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+    <Border BorderThickness="1" BorderBrush="Black" Margin="1" CornerRadius="3">
+        <Label Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" MouseEnter="Label_MouseEnter" MouseMove="Label_MouseMove"/>
+    </Border>
+    <!--Grid>
+        
+        
+
+    </-->
+</UserControl>

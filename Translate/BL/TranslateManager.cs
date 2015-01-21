@@ -26,9 +26,9 @@ namespace Translate.BL
             var callServiceResult = srvTranslate.TranslateString(textOriginal, translateDirection.From, translateDirection.To);
             if (string.IsNullOrEmpty(callServiceResult.Error))
             {
-                var ts = new TranslatedStrings(translateDirection);
-                ts.ListWords.Add(callServiceResult.Value);
-                translatedWords.SetTranslateResult(ts);
+                var tsResult = new TranslatedStrings(translateDirection);
+                tsResult.ListWords.Add(callServiceResult.Value);
+                translatedWords.SetTranslateResult(tsResult);
             }
             return translatedWords;
         }
